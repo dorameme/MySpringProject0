@@ -1,9 +1,8 @@
 package com.group.libraryapp.controller.calculator;
 
 import com.group.libraryapp.dto.calculator.request.CalculatorAddRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.group.libraryapp.dto.calculator.request.CalculatorMutiplyRequest;
+import org.springframework.web.bind.annotation.*;
 
 @RestController //API 만들때 필요
 public class CalculatorController {
@@ -16,5 +15,11 @@ public class CalculatorController {
     @GetMapping("/add") //method//path
     public int addTwoNumbers(CalculatorAddRequest request){
         return request.getNumber1()+ request.getNumber2();
+    }
+
+    @PostMapping("/multiply")
+    public int multiplyTwoNumbers(@RequestBody CalculatorMutiplyRequest request){
+        //@RequestBody로 바디에 제이슨 삽입
+        return request.getNumber1()*request.getNumber2();
     }
 }
