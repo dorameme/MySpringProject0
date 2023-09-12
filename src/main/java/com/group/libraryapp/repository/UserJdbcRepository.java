@@ -1,17 +1,21 @@
 package com.group.libraryapp.repository;
 
+import com.group.libraryapp.domain.user.UserRepository;
 import com.group.libraryapp.dto.user.response.UserResponse;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class UserRepository {
+@Repository
+public class UserJdbcRepository  {
     private JdbcTemplate jdbcTemplate;
-    public UserRepository(JdbcTemplate jdbcTemplate) {
-     this.jdbcTemplate=jdbcTemplate;
+
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public boolean isUserNotExist( long id){
+    public boolean isUserNotExist(long id){
         String readSql = "select * from user where id=?";
         return jdbcTemplate.query(readSql, (rs, rowNum) -> 0,
                 id).isEmpty();
