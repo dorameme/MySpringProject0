@@ -16,8 +16,12 @@ public class Book {
 
     public Book(String name) {
         if( name== null || name.isBlank()){
-            throw new IllegalArgumentException(String.format("잘못된 name(%s)입니다."name));
+            throw new IllegalArgumentException(String.format("잘못된 name(%s)입니다.",name));
         }
         this.name=name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
