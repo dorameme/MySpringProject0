@@ -1,6 +1,6 @@
 package com.group.libraryapp.service;
 
-import com.group.libraryapp.dto.user.UserCreateRequest;
+import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
 import com.group.libraryapp.repository.UserJdbcRepository;
