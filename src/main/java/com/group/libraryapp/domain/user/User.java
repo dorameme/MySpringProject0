@@ -1,8 +1,11 @@
 package com.group.libraryapp.domain.user;
 
+import com.group.libraryapp.domain.loanHistory.UserLoanHistory;
 import org.springframework.expression.spel.ast.NullLiteral;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -13,6 +16,9 @@ public class User {
     @Column(nullable=false,length=20,name="name")
     private String name;
     private Integer age;
+@OneToMany(mappedBy = "user")
+    private List<UserLoanHistory> userLoanHistories=new ArrayList<>();
+
     protected User(){}
     public User(String name,Integer age){
         if(name == null || name.isBlank()){
