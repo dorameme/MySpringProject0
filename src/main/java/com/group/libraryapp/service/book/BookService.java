@@ -37,16 +37,14 @@ public class BookService {
             throw new IllegalArgumentException("대출중 입니다 ");
         //4. 유저정보를 가져와 저장한다.
         User user= userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
-
-        userLoanHistoryRepository.save(new UserLoanHistory(user, book.getName()));
+        user.loanBook(book.getName());
 
     }
 
     @Transactional
     public void returnBook(BookReturnRequest request){
         User user= userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
-        UserLoanHistory history=userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.getBookName()).orElseThrow(IllegalArgumentException::new);
-        history.doReturn();
+        user.returnBook(request.getBookName());
         //영속성은 변경감지가 있으므로 변경을 자동으로 업데이트
     }
 }
